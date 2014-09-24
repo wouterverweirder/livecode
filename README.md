@@ -14,12 +14,12 @@ It uses [CodeMirror](https://github.com/codemirror/CodeMirror) for the code edit
 			<pre><code class="javascript">(function(){
     
     	function init() {
-  	      console.log("hello world");
-		}
-    
- 	   init();
-    
-		})();</code></pre>
+    		console.log("hello world");
+    	}
+
+    	init();
+
+    })();</code></pre>
 	
 			<pre><code class="html">&lt;html&gt;
 		&lt;head&gt;
