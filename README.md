@@ -21,7 +21,7 @@ It uses [CodeMirror](https://github.com/codemirror/CodeMirror) for the code edit
 	init();
 
 	})();</code></pre>
-	<pre><code class="html">&lt;html&gt;
+		<pre><code class="html">&lt;html&gt;
 	&lt;head&gt;
 	&lt;title&gt;Demo&lt;/title&gt;
 	&lt;/head&gt;
@@ -29,7 +29,7 @@ It uses [CodeMirror](https://github.com/codemirror/CodeMirror) for the code edit
 	&lt;h1&gt;Hello&lt;/h1&gt;
 	&lt;/body&gt;
 	&lt;/html&gt;</code></pre>
-	<pre><code class="css">body {
+		<pre><code class="css">body {
 		font-family: Comic Sans MS;
 	}</code></pre>
 	</div>
