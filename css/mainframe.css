@@ -1,0 +1,155 @@
+html, body, .content {
+	height: 100%;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 2em;
+	font-family: Helvetica Neue, Helvetica, Arial, Sans;
+}
+
+.content {
+	overflow: hidden;
+	position: relative;
+}
+
+/* General CSS properties */
+
+.toolbar, .editors, .preview, .console {
+	position: absolute;
+	background: white;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	border: solid 0 #aaa;
+}
+
+.toolbar {
+	width: 100%;
+	height: 21px;
+	background-color: #ccc;
+	border-bottom-width: 1px;
+}
+
+.preview, .console {
+	overflow: scroll;
+}
+
+.console {
+	font-family: Consolas, Courrier New, Courrier, monospace;
+	padding: 5px;
+}
+
+/*
+ * Positioning
+ */
+
+/* horizontal */
+
+.horizontal .editors {
+	top: 21px;
+	left: 0;
+	right: 40%;
+	bottom: 0;
+	border-right-width: 1px;
+}
+
+.horizontal .preview, .horizontal .console {
+	left: 60%;
+	right: 0;
+}
+
+.horizontal .preview {
+	top: 21px;
+	bottom: 50%;
+}
+
+.horizontal .console {
+	top: 50%;
+	bottom: 0;
+	border-top-width: 1px;
+}
+
+/* vertical */
+
+.vertical .editors {
+	top: 21px;
+	left: 0;
+	right: 0;
+	bottom: 40%;
+	border-bottom-width: 1px;
+}
+
+.vertical .preview, .vertical .console {
+	top: 60%;
+	bottom: 0;
+}
+
+.vertical .preview {
+	left: 0;
+	right: 50%;
+}
+
+.vertical .console {
+	left: 50%;
+	right: 0;
+	border-left-width: 1px;
+}
+
+/* end positioning */
+
+.toolbar ul {
+	overflow: hidden;
+	font-size: 0.4em;
+	margin: 0;
+	padding: 0;
+}
+
+.toolbar ul li {
+	float: left;
+	display: block;
+}
+
+.toolbar ul li a, .run {
+	float: left;
+	display: block;
+	text-decoration: none;
+	background-color: #ccc;
+	color: black;
+	line-height: 20px;
+	padding: 0 5px;
+}
+
+.toolbar ul li a:hover, .toolbar ul li a.selected, .run:hover {
+	background-color: #eee;
+}
+
+.run {
+	position: absolute;
+	cursor: pointer;
+	right: 0;
+	top: 0;
+	border: 0;
+	margin: 0;
+}
+
+.run:focus {
+  outline: none;
+}
+
+.preview iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.editor {
+	height: 100%;
+}
+
+.CodeMirror {
+	line-height: 1.2em;
+	height: 100%;
+}
