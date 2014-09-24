@@ -3,7 +3,7 @@
 Plugin for reveal.js to do livecode demos with html / css / javascript with a preview window and console messages inside your presentation.
 It uses [CodeMirror](https://github.com/codemirror/CodeMirror) for the code editors.
 
-![Screenshot](../blob/master/screenshot.png?raw=true)
+![Screenshot](../../blob/master/screenshot.png?raw=true)
 
 ## Usage
 
