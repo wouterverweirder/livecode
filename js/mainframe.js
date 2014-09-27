@@ -9,7 +9,6 @@
 	var previewElement, consoleElement;
 
 	function init(){
-		console.log('[mainframe] init');
 		previewElement = document.querySelector('.preview');
 		consoleElement = document.querySelector('.console');
 		toolbarElement = document.querySelector('.toolbar');
@@ -21,10 +20,15 @@
 			case 'innerHTML':
 				document.querySelector('.editors').innerHTML = message.data.innerHTML;
 				createEditors();
+				run();
 				document.querySelector('.run').addEventListener('click', run);
 				break;
 			case 'console.log':
 				consoleElement.innerHTML += message.data.arguments.join('<br />') + '<br />';
+				consoleElement.scrollTop = consoleElement.scrollHeight;
+				break;
+			case 'console.error':
+				consoleElement.innerHTML += '<span class="console-error">' + message.data.arguments.join('<br />') + '</span><br />';
 				consoleElement.scrollTop = consoleElement.scrollHeight;
 				break;
 		}
@@ -98,6 +102,8 @@
 		//codemirror
 		this.codeMirror = CodeMirror.fromTextArea(textarea, {
 			lineNumbers: true,
+			smartIndent: false,
+			indentWithTabs: true,
 			mode: mode
 		});
 		this.el = wrapper;
@@ -113,11 +119,7 @@
 
     preview.open();
 
-    preview.write('<script>');
-    preview.write('console.log = function(){');
-    preview.write('parent.postMessage({type: \'console.log\', arguments: Array.prototype.slice.call(arguments)}, \'*\');');
-    preview.write('};');
-    preview.write('</script>');
+    preview.write('<script src="js/previewframe.js"></script>');
 
     var htmlEditor = getEditorByTitle('html');
     if(htmlEditor) {

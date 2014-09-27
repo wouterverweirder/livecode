@@ -42,6 +42,10 @@ body {
 	padding: 5px;
 }
 
+.console-error {
+	color: red;
+}
+
 /*
  * Positioning
  */
