@@ -124,6 +124,8 @@
     var htmlEditor = getEditorByTitle('html');
     if(htmlEditor) {
     	preview.write(htmlEditor.codeMirror.getValue());
+    } else {
+    	preview.write('<html><head><title>HTML</title></head><body></body></html>');
     }
     var cssEditor = getEditorByTitle('css');
     if(cssEditor) {
