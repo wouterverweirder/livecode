@@ -50,3 +50,43 @@ It uses [CodeMirror](https://github.com/codemirror/CodeMirror) for the code edit
 	```
 
 4. You're done. You should be able to code inside the editors. Press run to update the preview.
+
+## Options
+
+### Panel Layout
+
+You can change the stacking of the editors vs the console & preview panels, by specifying a horizontal or vertical class on the wrapping div:
+
+```
+<div class="livecode stretch horizontal">
+	<!-- will display the console and preview on the right from the editor -->
+</div>
+```
+
+```
+<div class="livecode stretch vertical">
+	<!-- (default) will display the console and preview underneath the editor -->
+</div>
+```
+
+### Hide Panels
+
+You can hide the preview and / or console by specifying the class(es) no-preview and / or no-console on the wrapping div
+
+```
+<div class="livecode stretch no-preview">
+	<!-- hides the preview panel -->
+</div>
+```
+
+```
+<div class="livecode stretch no-console">
+	<!-- hides the console panel -->
+</div>
+```
+
+```
+<div class="livecode stretch no-preview no-console">
+	<!-- hides the preview and console panel -->
+</div>
+```

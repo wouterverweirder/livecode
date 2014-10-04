@@ -17,7 +17,18 @@
 
 	function receiveMessage(message) {
 		switch(message.data.type) {
-			case 'innerHTML':
+			case 'init':
+				if(message.data.preview.visible) {
+					document.documentElement.classList.add('has-preview');
+				} else {
+					document.documentElement.classList.add('no-preview');
+				}
+				if(message.data.console.visible) {
+					document.documentElement.classList.add('has-console');
+				} else {
+					document.documentElement.classList.add('no-console');
+				}
+				document.documentElement.classList.add(message.data.layout);
 				document.querySelector('.editors').innerHTML = message.data.innerHTML;
 				createEditors();
 				run();

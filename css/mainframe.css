@@ -33,6 +33,11 @@ body {
 	border-bottom-width: 1px;
 }
 
+.no-console .console,
+.no-preview .preview {
+	display: none;
+}
+
 .console {
 	overflow: scroll;
 }
@@ -55,24 +60,43 @@ body {
 .horizontal .editors {
 	top: 21px;
 	left: 0;
-	right: 40%;
+	right: 0;
 	bottom: 0;
 	border-right-width: 1px;
 }
 
-.horizontal .preview, .horizontal .console {
-	left: 60%;
+.horizontal.has-preview .editors,
+.horizontal.has-console .editors {
+	right: 40%;
+}
+
+.horizontal .preview,
+.horizontal .console {
+	left: 100%;
 	right: 0;
+}
+
+.horizontal.has-preview .preview,
+.horizontal.has-console .console {
+	left: 60%;
 }
 
 .horizontal .preview {
 	top: 21px;
-	bottom: 50%;
+	bottom: 0;
 }
 
 .horizontal .console {
-	top: 50%;
+	top: 21px;
 	bottom: 0;
+}
+
+.horizontal.has-preview.has-console .preview {
+	bottom: 50%;
+}
+
+.horizontal.has-preview.has-console .console {
+	top: 50%;
 	border-top-width: 1px;
 }
 
@@ -82,24 +106,43 @@ body {
 	top: 21px;
 	left: 0;
 	right: 0;
-	bottom: 40%;
+	bottom: 0;
 	border-bottom-width: 1px;
 }
 
-.vertical .preview, .vertical .console {
-	top: 60%;
+.vertical.has-preview .editors,
+.vertical.has-console .editors {
+	bottom: 40%;
+}
+
+.vertical .preview,
+.vertical .console {
+	top: 100%;
 	bottom: 0;
+}
+
+.vertical.has-preview .preview,
+.vertical.has-console .console {
+	top: 60%;
 }
 
 .vertical .preview {
 	left: 0;
-	right: 50%;
+	right: 0;
 }
 
 .vertical .console {
-	left: 50%;
+	left: 0;
 	right: 0;
 	border-left-width: 1px;
+}
+
+.vertical.has-preview.has-console .preview {
+	right: 50%;
+}
+
+.vertical.has-preview.has-console .console {
+	left: 50%;
 }
 
 /* end positioning */
