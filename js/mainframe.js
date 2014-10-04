@@ -181,7 +181,9 @@
 	}
 
 	function injectJS(preview) {
-		preview.write('<script>' + concatEditorValues(getEditorsByLanguage('javascript')) + '</script>');
+		var js = concatEditorValues(getEditorsByLanguage('javascript'));
+		js = 'try{' + js + '}catch(e){console.error(e);}';
+		preview.write('<script>' + js + '</script>');
 	}
 
 	init();
