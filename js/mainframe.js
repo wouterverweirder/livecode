@@ -122,11 +122,18 @@
     preview.write('<script src="js/previewframe.js"></script>');
 
     var htmlEditor = getEditorByTitle('html');
+    var html = '<html><head><title>HTML</title></head><body></body></html>';
     if(htmlEditor) {
-    	preview.write(htmlEditor.codeMirror.getValue());
-    } else {
-    	preview.write('<html><head><title>HTML</title></head><body></body></html>');
+    	html = htmlEditor.codeMirror.getValue();
     }
+    //inject base href tag into html
+    var baseTag = document.createElement('base');
+    baseTag.setAttribute('href', '../../');
+    var doc = document.implementation.createHTMLDocument("");
+    doc.documentElement.innerHTML = html;
+    doc.documentElement.querySelector('head').appendChild(baseTag);
+    preview.write(doc.documentElement.outerHTML);
+    
     var cssEditor = getEditorByTitle('css');
     if(cssEditor) {
     	preview.write('<style>' + cssEditor.codeMirror.getValue() + '</style>');

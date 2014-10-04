@@ -33,7 +33,7 @@ body {
 	border-bottom-width: 1px;
 }
 
-.preview, .console {
+.console {
 	overflow: scroll;
 }
 
