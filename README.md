@@ -53,6 +53,46 @@ It uses [CodeMirror](https://github.com/codemirror/CodeMirror) for the code edit
 
 ## Options
 
+### Panel Title
+
+You can specify a title for a panel, which is shown in the tab in the toolbar.
+
+```
+<div class="livecode"><pre><code class="javascript" title="script.js">(function(){
+
+function init() {
+	console.log("hello world");
+}
+
+init();
+
+})();</code></pre></div>
+```
+
+### Multiple JS/CSS Files
+
+You can have multiple files for the same language. Make sure to give each panel a unique title and you're set.
+
+```
+<div class="livecode"><pre><code class="javascript" title="script.js">(function(){
+
+function init() {
+	console.log("hello world");
+}
+
+init();
+
+})();</code></pre><pre><code class="javascript" title="other.js">(function(){
+
+function init() {
+	console.log("something else");
+}
+
+init();
+
+})();</code></pre></div>
+```
+
 ### Panel Layout
 
 You can change the stacking of the editors vs the console & preview panels, by specifying a horizontal or vertical class on the wrapping div:

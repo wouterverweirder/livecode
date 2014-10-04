@@ -88,24 +88,47 @@
 		return null;
 	}
 
+	function getEditorsByLanguage(language) {
+		return editors.filter(function(editor){
+			return (editor.language === language);
+		});
+	}
+
+	function concatEditorValues(editors) {
+		return editors.reduce(function(previousValue, editor){
+			return previousValue + editor.codeMirror.getValue();
+		}, '');
+	}
+
 	function Editor(el) {
-		var mode;
+		this.mode = '';
 		this.title = '';
 		if(el.classList.contains('html')) {
-			mode = 'htmlmixed';
+			this.mode = 'htmlmixed';
 			this.title = 'html';
+			this.language = 'html';
 		}
 		if(el.classList.contains('javascript')) {
-			mode = 'javascript';
+			this.mode = 'javascript';
 			this.title = 'js';
+			this.language = 'javascript';
 		}
 		if(el.classList.contains('css')) {
-			mode = 'css';
+			this.mode = 'css';
 			this.title = 'css';
+			this.language = 'css';
+		}
+		if(el.hasAttribute('title')) {
+			this.title = el.getAttribute('title');
 		}
 		//replace it with a textarea inside wrapper
 		var wrapper = document.createElement('div');
 		wrapper.classList.add('editor');
+		//set the data attributes
+		wrapper.setAttribute('data-title', this.title);
+		wrapper.setAttribute('data-language', this.language);
+		wrapper.setAttribute('data-mode', this.mode);
+		//insert the textarea
 		var textarea = document.createElement('textarea');
 		textarea.innerHTML = el.innerHTML;
 		wrapper.appendChild(textarea);
@@ -115,7 +138,7 @@
 			lineNumbers: true,
 			smartIndent: false,
 			indentWithTabs: true,
-			mode: mode
+			mode: this.mode
 		});
 		this.el = wrapper;
 	}
@@ -132,11 +155,18 @@
 
     preview.write('<script src="js/previewframe.js"></script>');
 
-    var htmlEditor = getEditorByTitle('html');
-    var html = '<html><head><title>HTML</title></head><body></body></html>';
-    if(htmlEditor) {
-    	html = htmlEditor.codeMirror.getValue();
-    }
+    injectHTML(preview);
+    injectCSS(preview);
+    injectJS(preview);
+
+    preview.close();
+	}
+
+	function injectHTML(preview) {
+		var html = concatEditorValues(getEditorsByLanguage('html'));
+		if(html.length === 0) {
+			html = '<html><head><title>HTML</title></head><body></body></html>';
+		}
     //inject base href tag into html
     var baseTag = document.createElement('base');
     baseTag.setAttribute('href', '../../');
@@ -144,17 +174,14 @@
     doc.documentElement.innerHTML = html;
     doc.documentElement.querySelector('head').appendChild(baseTag);
     preview.write(doc.documentElement.outerHTML);
-    
-    var cssEditor = getEditorByTitle('css');
-    if(cssEditor) {
-    	preview.write('<style>' + cssEditor.codeMirror.getValue() + '</style>');
-    }
-    var jsEditor = getEditorByTitle('js');
-    if(jsEditor) {
-    	preview.write('<script>' + jsEditor.codeMirror.getValue() + '</script>');
-    }
+	}
 
-    preview.close();
+	function injectCSS(preview) {
+		preview.write('<style>' + concatEditorValues(getEditorsByLanguage('css')) + '</style>');
+	}
+
+	function injectJS(preview) {
+		preview.write('<script>' + concatEditorValues(getEditorsByLanguage('javascript')) + '</script>');
 	}
 
 	init();
